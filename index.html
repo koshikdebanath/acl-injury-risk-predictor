@@ -357,6 +357,374 @@
     </section>
     <!-- End paper abstract -->
 
+    <!-- Methodology -->
+    <section class="section hero">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Methodology</h2>
+        <div class="content has-text-justified">
+          <h3 class="title is-4">Attention Mechanism Architecture</h3>
+          <p>
+            Our proposed attention-based deep learning model integrates spatial attention mechanisms into a
+            convolutional neural network backbone. The attention module learns to assign importance weights to different
+            regions of the MRI image, allowing the network to focus on anatomically relevant features for injury
+            classification.
+          </p>
+          <div class="has-text-centered" style="margin: 2rem 0;">
+            <img src="static/images/attention_prioritize.jpg" alt="Attention mechanism visualization"
+              style="max-width: 90%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <p class="is-size-6" style="margin-top: 1rem; color: #666;">
+              <strong>Figure 1:</strong> Attention mechanism prioritizing critical regions in knee MRI for injury
+              detection
+            </p>
+          </div>
+          <h3 class="title is-4">Model Components</h3>
+          <ul>
+            <li><strong>Backbone Network:</strong> Deep CNN architecture for feature extraction from MRI images</li>
+            <li><strong>Attention Module:</strong> Spatial attention layer that generates importance weights for
+              different image regions</li>
+            <li><strong>Feature Fusion:</strong> Weighted combination of attention-modulated features</li>
+            <li><strong>Classification Head:</strong> Fully connected layers for multi-class injury prediction</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Datasets -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Datasets</h2>
+        <div class="content has-text-justified">
+          <p>
+            We conducted experiments on two complementary datasets to evaluate our attention-based approach across
+            different classification tasks: binary ACL tear detection and multi-class knee injury classification.
+          </p>
+
+          <h3 class="title is-4">Dataset Statistics</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Dataset</th>
+                  <th>Task</th>
+                  <th>Classes</th>
+                  <th>Training Samples</th>
+                  <th>Validation Samples</th>
+                  <th>Test Samples</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Dataset 1</strong></td>
+                  <td>Binary Classification</td>
+                  <td>2 (Healthy, ACL Tear)</td>
+                  <td>800</td>
+                  <td>200</td>
+                  <td>200</td>
+                  <td>1,200</td>
+                </tr>
+                <tr>
+                  <td><strong>Dataset 2</strong></td>
+                  <td>Multi-class Classification</td>
+                  <td>5 (ACL, Meniscus, Cartilage, Multi-injury, Healthy)</td>
+                  <td>1,500</td>
+                  <td>375</td>
+                  <td>375</td>
+                  <td>2,250</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="columns" style="margin-top: 2rem;">
+            <div class="column is-half">
+              <div class="has-text-centered">
+                <img src="static/images/ACL_dataset_1.png" alt="Dataset 1"
+                  style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <p class="is-size-6" style="margin-top: 1rem; color: #666;">
+                  <strong>Dataset 1:</strong> Binary classification samples
+                </p>
+              </div>
+            </div>
+            <div class="column is-half">
+              <div class="has-text-centered">
+                <img src="static/images/ACL_dataset_2.png" alt="Dataset 2"
+                  style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <p class="is-size-6" style="margin-top: 1rem; color: #666;">
+                  <strong>Dataset 2:</strong> Multi-class injury samples
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 2rem;">Data Preprocessing</h3>
+          <ul>
+            <li>Image resizing to 224×224 pixels</li>
+            <li>Intensity normalization to [0, 1] range</li>
+            <li>Data augmentation: rotation (±15°), horizontal flip, zoom (0.9-1.1×)</li>
+            <li>Train-validation-test split: 66.7% / 16.7% / 16.7%</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experimental Results -->
+    <section class="section hero">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Experimental Results</h2>
+        <div class="content has-text-justified">
+
+          <h3 class="title is-4">Model Comparison</h3>
+          <p>
+            We compared our attention-based model against five baseline approaches including standard CNNs and
+            pre-trained architectures. The results demonstrate consistent improvements across multiple evaluation
+            metrics.
+          </p>
+
+          <div class="has-text-centered" style="margin: 2rem 0;">
+            <img src="static/images/model_comparison_6_models.jpg" alt="Model comparison"
+              style="max-width: 95%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <p class="is-size-6" style="margin-top: 1rem; color: #666;">
+              <strong>Figure 2:</strong> Performance comparison of 6 different model architectures
+            </p>
+          </div>
+
+          <h3 class="title is-4">Binary Classification Results (Dataset 1)</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Accuracy (%)</th>
+                  <th>Precision (%)</th>
+                  <th>Recall (%)</th>
+                  <th>F1-Score (%)</th>
+                  <th>AUC</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Standard CNN</td>
+                  <td>85.2</td>
+                  <td>83.5</td>
+                  <td>84.8</td>
+                  <td>84.1</td>
+                  <td>0.891</td>
+                </tr>
+                <tr>
+                  <td>ResNet-50</td>
+                  <td>88.5</td>
+                  <td>87.2</td>
+                  <td>88.9</td>
+                  <td>88.0</td>
+                  <td>0.923</td>
+                </tr>
+                <tr>
+                  <td>VGG-16</td>
+                  <td>86.8</td>
+                  <td>85.6</td>
+                  <td>87.2</td>
+                  <td>86.4</td>
+                  <td>0.908</td>
+                </tr>
+                <tr>
+                  <td>DenseNet-121</td>
+                  <td>89.3</td>
+                  <td>88.5</td>
+                  <td>89.7</td>
+                  <td>89.1</td>
+                  <td>0.931</td>
+                </tr>
+                <tr>
+                  <td>EfficientNet-B0</td>
+                  <td>90.1</td>
+                  <td>89.3</td>
+                  <td>90.5</td>
+                  <td>89.9</td>
+                  <td>0.942</td>
+                </tr>
+                <tr style="background-color: #e8f5e9;">
+                  <td><strong>Attention-Based Model (Ours)</strong></td>
+                  <td><strong>93.4</strong></td>
+                  <td><strong>92.8</strong></td>
+                  <td><strong>93.7</strong></td>
+                  <td><strong>93.2</strong></td>
+                  <td><strong>0.967</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 2rem;">Multi-class Classification Results (Dataset 2)</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Model</th>
+                  <th>Overall Accuracy (%)</th>
+                  <th>Macro F1-Score (%)</th>
+                  <th>Weighted F1-Score (%)</th>
+                  <th>Parameters (M)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Standard CNN</td>
+                  <td>76.3</td>
+                  <td>74.5</td>
+                  <td>75.8</td>
+                  <td>12.4</td>
+                </tr>
+                <tr>
+                  <td>ResNet-50</td>
+                  <td>81.7</td>
+                  <td>80.2</td>
+                  <td>81.1</td>
+                  <td>25.6</td>
+                </tr>
+                <tr>
+                  <td>VGG-16</td>
+                  <td>78.9</td>
+                  <td>77.3</td>
+                  <td>78.4</td>
+                  <td>138.4</td>
+                </tr>
+                <tr>
+                  <td>DenseNet-121</td>
+                  <td>83.2</td>
+                  <td>81.8</td>
+                  <td>82.7</td>
+                  <td>8.1</td>
+                </tr>
+                <tr>
+                  <td>EfficientNet-B0</td>
+                  <td>84.6</td>
+                  <td>83.1</td>
+                  <td>84.2</td>
+                  <td>5.3</td>
+                </tr>
+                <tr style="background-color: #e8f5e9;">
+                  <td><strong>Attention-Based Model (Ours)</strong></td>
+                  <td><strong>88.9</strong></td>
+                  <td><strong>87.4</strong></td>
+                  <td><strong>88.5</strong></td>
+                  <td><strong>14.2</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 2rem;">Per-Class Performance (Multi-class Task)</h3>
+          <div class="table-container">
+            <table class="table is-bordered is-striped is-fullwidth">
+              <thead>
+                <tr>
+                  <th>Class</th>
+                  <th>Precision (%)</th>
+                  <th>Recall (%)</th>
+                  <th>F1-Score (%)</th>
+                  <th>Support</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Healthy</td>
+                  <td>91.5</td>
+                  <td>93.2</td>
+                  <td>92.3</td>
+                  <td>85</td>
+                </tr>
+                <tr>
+                  <td>ACL Tear</td>
+                  <td>89.7</td>
+                  <td>88.4</td>
+                  <td>89.0</td>
+                  <td>78</td>
+                </tr>
+                <tr>
+                  <td>Meniscal Tear</td>
+                  <td>86.3</td>
+                  <td>85.9</td>
+                  <td>86.1</td>
+                  <td>71</td>
+                </tr>
+                <tr>
+                  <td>Cartilage Damage</td>
+                  <td>84.8</td>
+                  <td>83.5</td>
+                  <td>84.1</td>
+                  <td>68</td>
+                </tr>
+                <tr>
+                  <td>Multi-injury</td>
+                  <td>87.2</td>
+                  <td>86.1</td>
+                  <td>86.6</td>
+                  <td>73</td>
+                </tr>
+                <tr style="background-color: #f5f5f5;">
+                  <td><strong>Macro Average</strong></td>
+                  <td><strong>87.9</strong></td>
+                  <td><strong>87.4</strong></td>
+                  <td><strong>87.6</strong></td>
+                  <td><strong>375</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 2rem;">Key Findings</h3>
+          <div class="notification is-success is-light">
+            <ul>
+              <li><strong>Superior Performance:</strong> Our attention-based model achieved 93.4% accuracy on binary
+                classification and 88.9% on multi-class tasks, outperforming all baseline models</li>
+              <li><strong>Improved Generalization:</strong> Consistent performance across different injury types
+                demonstrates robust feature learning</li>
+              <li><strong>Interpretability:</strong> Attention maps provide visual explanations highlighting
+                anatomically relevant regions</li>
+              <li><strong>Efficiency:</strong> Competitive parameter count (14.2M) compared to larger architectures like
+                VGG-16 (138.4M)</li>
+              <li><strong>Clinical Relevance:</strong> High precision and recall metrics make the model suitable for
+                clinical decision support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Visualization Results -->
+    <section class="section hero is-light">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3">Prediction Visualizations</h2>
+        <div class="content has-text-justified">
+          <p>
+            The following visualizations demonstrate our model's predictions on test samples, along with attention maps
+            showing which regions the model focused on for each classification decision.
+          </p>
+
+          <h3 class="title is-4">Binary Classification Predictions</h3>
+          <div class="has-text-centered" style="margin: 2rem 0;">
+            <img src="static/images/test_prediction_image_binary_dataset_1.png" alt="Binary predictions"
+              style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <p class="is-size-6" style="margin-top: 1rem; color: #666;">
+              <strong>Figure 3:</strong> Test predictions on binary dataset with attention visualization highlighting
+              ACL region
+            </p>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 2rem;">Multi-class Classification Predictions</h3>
+          <div class="has-text-centered" style="margin: 2rem 0;">
+            <img src="static/images/test_prediction_image_5_class.png" alt="Multi-class predictions"
+              style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <p class="is-size-6" style="margin-top: 1rem; color: #666;">
+              <strong>Figure 4:</strong> Multi-class predictions demonstrating accurate classification across five
+              injury categories
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- Image carousel -->
     <section class="hero is-small">
